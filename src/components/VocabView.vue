@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 interface Vocab {
-    Lesson: number;
+    Lesson: string;
     Kana: string;
     Kanji?: string;
     Meaning: string;
