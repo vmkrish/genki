@@ -1,6 +1,10 @@
 <script setup lang="ts">
 
-interface Vocab {
+import { VTable } from 'vuetify/components'
+import { VDataTable } from 'vuetify/labs/components';
+
+interface Vocab extends Object {
+    keys(): string[];
     Lesson: string;
     Kana: string;
     Kanji?: string;
@@ -13,9 +17,43 @@ defineProps<{
 </script>
 
 <template>
-<!-- <div id="table">
-    <b-table :items="vocab"></b-table>
-</div> -->
+<span>VTable</span>
+<div id="table">
+    <v-table height="600px">
+        <thead>
+            <th> L </th>
+            <!-- <th> Kana </th> -->
+            <th> Kanji </th>
+            <th> Meaning </th>
+        </thead>
+        <tbody>
+            <tr v-for="item in vocab">
+                <td>{{ item.Lesson }}</td>
+                <!-- <td>{{ item.Kana }}</td> -->
+                <td>{{ item.Kanji }}</td>
+                <td>{{ item.Meaning }}</td>
+            </tr>
+    </tbody>
+
+    </v-table>
+</div>
+
+<span>VDataTable</span>
+
+<div id="data-table">
+    <v-data-table
+        items-per-page="100"
+        :headers="[
+            // { title: 'L', align: 'start', key: 'Lesson', width: '0%' },
+            // { title: 'Kana', align: 'end', key: 'Kana' },
+            { title: 'Kanji', align: 'start', key: 'Kanji' },
+            { title: 'Meaning', align: 'end', key: 'Meaning' },
+        ]"
+        :group-by="[{key: 'Lesson'}]"
+        :items="vocab"
+        item-value="Kana"
+        class="elevation-1"></v-data-table>
+</div>
 
 End of Div
 
@@ -55,4 +93,8 @@ End of Div
 .vocab-row {
     margin-bottom: 0;
 }
+
+// v-table  {
+//     padding: 10px;
+// }
 </style>
