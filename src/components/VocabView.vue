@@ -4,7 +4,6 @@ import { VTable } from 'vuetify/components'
 import { VDataTable } from 'vuetify/labs/components';
 
 interface Vocab extends Object {
-    keys(): string[];
     Lesson: string;
     Kana: string;
     Kanji?: string;
