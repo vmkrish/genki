@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import vocab from '../assets/vocab.json'
 
 import { VTable } from 'vuetify/components'
 import { VDataTable } from 'vuetify/labs/components';
@@ -11,7 +12,7 @@ interface Vocab extends Object {
 }
 
 defineProps<{
-  vocab: Vocab[],
+//   vocab: Vocab[],
 }>()
 </script>
 
@@ -43,18 +44,15 @@ defineProps<{
     <v-data-table
         items-per-page="100"
         :headers="[
-            // { title: 'L', align: 'start', key: 'Lesson', width: '0%' },
-            // { title: 'Kana', align: 'end', key: 'Kana' },
+            { title: 'Kana', align: 'start', key: 'Kana' },
             { title: 'Kanji', align: 'start', key: 'Kanji' },
             { title: 'Meaning', align: 'end', key: 'Meaning' },
         ]"
-        :group-by="[{key: 'Lesson'}]"
+        :group-by="[{key: 'Lesson'}, {key: 'Type'}]"
         :items="vocab"
         item-value="Kana"
         class="elevation-1"></v-data-table>
 </div>
-
-End of Div
 
 <div>
 <div class="columns">
@@ -85,6 +83,8 @@ End of Div
 </template>
 
 <style lang="scss" scoped>
+@import "../assets/main.css";
+
 .japanese-text {
     font-size: 1.2em;
 }

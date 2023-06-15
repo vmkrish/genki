@@ -3,12 +3,12 @@ import {
   VApp,
   VAppBar,
   VAppBarNavIcon,
-  VIcon,
   VList,
   VListGroup,
   VListItem,
   VListItemTitle,
   VNavigationDrawer,
+  VComponentIcon,
   VToolbarTitle
 } from 'vuetify/components';
 </script>
@@ -16,7 +16,7 @@ import {
 <template>
   <v-app>
     <v-app-bar>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer=true"></v-app-bar-nav-icon>
       <v-toolbar-title>Genki</v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -26,8 +26,9 @@ import {
         active-class="deep-purple--text text--accent-4"
       >
         <v-list-item>
-          <!-- <v-icon icon="$vuetify"></v-icon> -->
-          <v-icon icon="mdi-home"></v-icon>
+          <!-- <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon> -->
           <v-list-item-title><router-link to="/">Home</router-link></v-list-item-title>
         </v-list-item>
 
@@ -35,7 +36,6 @@ import {
           <!-- <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon> -->
-          <v-icon icon="mdi-account"></v-icon>
           <v-list-item-title><router-link to="/vocab">Vocab</router-link></v-list-item-title>
         </v-list-item>
 
@@ -49,8 +49,6 @@ import {
     </v-list>
   </v-navigation-drawer>
   <div>
-    <v-icon icon="$vuetify"></v-icon>
-
     <router-view></router-view>
   </div>
   </v-app>
