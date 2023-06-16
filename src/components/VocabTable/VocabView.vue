@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import vocab from '../assets/vocab.json'
+import vocab from '@/assets/vocab.json'
 
 import { VTable } from 'vuetify/components'
 import { VDataTable } from 'vuetify/labs/components';
@@ -82,7 +82,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@import "../assets/main.css";
+@import "../../assets/main.css";
 
 .japanese-text {
     font-size: 1.2em;

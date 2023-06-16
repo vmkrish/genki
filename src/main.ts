@@ -9,7 +9,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import App from './App.vue'
-import VocabViewVue from './components/VocabView.vue'
+import VocabViewVue from './components/VocabTable/VocabView.vue'
 
 const updateSW = registerSW({
     onOfflineReady() {},
@@ -25,12 +25,18 @@ app.use(createVuetify({
         mdi,
       },
     },
+    theme: {
+      defaultTheme: 'light'
+    }
   }))
 app.use(createRouter({
     history: createWebHistory('/genki/'),
     routes: [
         { path: '/', component: VocabViewVue },
         { path: '/vocab', component: VocabViewVue },
+        { path: '/vocab-vtable', component: () => import('./components/VocabTable/VocabVTable.vue') },
+        { path: '/vocab-vdtable', component: () => import('./components/VocabTable/VocabVDTable.vue') },
+        { path: '/vocab-btable', component: () => import('./components/VocabTable/BulmaTable.vue') },
         { path: '/new', component: () => import('./components/NewView.vue') }
     ],
 }))
