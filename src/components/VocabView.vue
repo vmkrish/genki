@@ -12,14 +12,13 @@ interface Vocab extends Object {
 }
 
 defineProps<{
-//   vocab: Vocab[],
 }>()
 </script>
 
 <template>
 <span>VTable</span>
 <div id="table">
-    <v-table height="600px">
+    <v-table height="600px" style="border:1px;border-color:black;border-style: solid;">
         <thead>
             <th> L </th>
             <!-- <th> Kana </th> -->
@@ -92,8 +91,4 @@ defineProps<{
 .vocab-row {
     margin-bottom: 0;
 }
-
-// v-table  {
-//     padding: 10px;
-// }
 </style>

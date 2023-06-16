@@ -2,12 +2,10 @@
 @import 'bulma/css/bulma.css';
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   font-weight: normal;
 }
 
 #main {
-  margin-top: 48px;
-  padding: 2rem;
+  margin: 0 2em;
 }
