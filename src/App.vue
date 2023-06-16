@@ -15,58 +15,59 @@ import {
 
 <template>
   <v-app>
-    <v-app-bar>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+    <v-app-bar density="compact" flat>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Genki</v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
 
-    <v-list nav dense>
-      <v-list-group
-        active-class="deep-purple--text text--accent-4"
-      >
+
+    <!-- :permanent="!$vuetify.breakpoint.xsOnly" -->
+
+    <v-navigation-drawer
+      v-model="drawer"
+      :scrim=false
+      width="80px"
+      app
+      clipped
+      flat
+    >
+
+      <v-list nav dense>
         <v-list-item>
-          <!-- <v-icon icon="$vuetify"></v-icon> -->
-          <v-icon icon="mdi-home"></v-icon>
-          <v-list-item-title><router-link to="/">Home</router-link></v-list-item-title>
+          <v-list-item-title>
+            <router-link to="/new">New</router-link>
+          </v-list-item-title>
         </v-list-item>
-
         <v-list-item>
-          <!-- <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-icon> -->
+          <v-list-item-title>
+            <router-link to="/vocab">Vocab</router-link>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
+            <router-link to="/"><v-icon icon="$vuetify" /></router-link>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
           <v-icon icon="mdi-account"></v-icon>
-          <v-list-item-title><router-link to="/vocab">Vocab</router-link></v-list-item-title>
         </v-list-item>
-
-        <v-list-item>
-          <!-- <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-icon> -->
-          <v-list-item-title><router-link to="/new">New</router-link></v-list-item-title>
-        </v-list-item>
-      </v-list-group>
-    </v-list>
-  </v-navigation-drawer>
-  <div>
-    <v-icon icon="$vuetify"></v-icon>
-
-    <router-view></router-view>
-  </div>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main id="main">
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
   </v-app>
-
-  <!-- <VocabView :vocab="vocab" /> -->
 </template>
 
 <script lang="ts">
+
 export default {
   data: () => ({
-    drawer: false,
+    drawer: true,
   })
 }
 </script>
 
-<style scoped>
-/*
-*/
-</style>
+<style scoped></style>
