@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import vocab from '@/assets/vocab.json'
+import vocab from '../../assets/vocab.json'
 
 import { VTable } from 'vuetify/components'
 
