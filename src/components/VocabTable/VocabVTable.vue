@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import vocab from '../../assets/vocab.json'
+</script>
 
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { VTable } from 'vuetify/components'
 
-defineProps<{
-}>()
+export default defineComponent({
+})
 </script>
 
 <template>
-    <span>VTable</span>
     <div id="table">
-        <v-table height="600px" style="border:1px;border-color:black;border-style: solid;">
+        <v-table style="border:1px;border-color:black;border-style: solid;">
             <thead>
                 <th> L </th>
                 <!-- <th> Kana </th> -->

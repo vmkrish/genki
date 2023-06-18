@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import vocab from '../../assets/vocab.json'
 
-import { VDataTable } from 'vuetify/labs/components';
-
 interface Vocab extends Object {
     Lesson: string;
     Kana: string;
     Kanji?: string;
     Meaning: string;
 }
+</script>
 
-defineProps<{
-}>()
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { VDataTable } from 'vuetify/labs/components';
+
+export default defineComponent({
+})
 </script>
 
 <template>
