@@ -1,5 +1,6 @@
 import './assets/main.css'
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+import '@fontsource/open-sans'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -12,7 +13,9 @@ import Vue3TouchEvents from "vue3-touch-events";
 import App from './App.vue'
 import VocabViewVue from './components/VocabTable/VocabView.vue'
 
+import 'vuetify/styles'
 import * as vuetifyComponents from 'vuetify/components'
+import * as vuetifyDirectives from 'vuetify/directives'
 
 const updateSW = registerSW({
     onOfflineReady() {},
@@ -23,6 +26,7 @@ app.use(Vue3TouchEvents);
 app.use(createPinia())
 app.use(createVuetify({
     components: vuetifyComponents,
+    directives: vuetifyDirectives,
     icons: {
       defaultSet: 'mdi',
       aliases,

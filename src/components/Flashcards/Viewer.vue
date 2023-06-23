@@ -9,5 +9,5 @@ export default defineComponent({ components: { Flashcard } })
 </script>
 
 <template>
-    <Flashcard front="ABC" back="XYZ"></Flashcard>
+    <Flashcard front="FRONT" back="BACK" card-id="some-card-id"></Flashcard>
 </template>
