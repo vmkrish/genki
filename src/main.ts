@@ -2,11 +2,13 @@ import './assets/main.css'
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import '@fontsource/open-sans'
 
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { registerSW } from 'virtual:pwa-register'
 import { createVuetify } from 'vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
+// import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import { createRouter, createWebHistory } from 'vue-router'
 import Vue3TouchEvents from "vue3-touch-events";
 

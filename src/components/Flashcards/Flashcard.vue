@@ -1,5 +1,4 @@
 <script lang="ts">
-import type { Component } from 'vue';
 import { defineComponent } from 'vue';
 import {
     VCard,

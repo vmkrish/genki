@@ -9,6 +9,7 @@ import {
   VNavigationDrawer,
   VToolbarTitle
 } from 'vuetify/components';
+import { mdiHelpBoxMultipleOutline } from '@mdi/js';
 </script>
 
 <template>
@@ -22,6 +23,11 @@ import {
     <v-list nav dense>
       <v-list-item>
           <v-list-item-title><router-link to="/">Home</router-link></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
+            <router-link to="/flashcards"><v-icon :icon="mdiHelpBoxMultipleOutline" /></router-link>
+          </v-list-item-title>
         </v-list-item>
         <v-list-item>
           <v-list-item-title><router-link to="/vocab">Vocab</router-link></v-list-item-title>
@@ -38,14 +44,14 @@ import {
         <v-list-item>
           <v-list-item-title><router-link to="/new">New</router-link></v-list-item-title>
         </v-list-item>
-      <v-list-item>
-        <v-list-item-title>
-          <router-link to="/"><v-icon icon="$vuetify" /></router-link>
-        </v-list-item-title>
-      </v-list-item>
-      <v-list-item>
-        <v-icon icon="mdi-account"></v-icon>
-      </v-list-item>
+        <v-list-item>
+          <v-list-item-title>
+            <router-link to="/"><v-icon icon="$vuetify" /></router-link>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-icon icon="mdi-account"></v-icon>
+        </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
