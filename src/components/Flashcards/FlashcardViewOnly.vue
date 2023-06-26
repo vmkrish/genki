@@ -186,6 +186,5 @@ export default defineComponent({
 }
 
 .v-btn {
-    width: 200px;
 }
 </style>
