@@ -1,12 +1,15 @@
 <script setup lang="ts">
 defineProps<{
-    cardId?: string;
     next: () => void;
     repeat: () => void;
+    front?: string;
+    back?: string;
+    furigana?: string;
 }>()
 </script>
 
 <script lang="ts">
+import { mdiYeast } from '@mdi/js';
 import { defineComponent } from 'vue';
 import {
     VCard,
@@ -15,8 +18,6 @@ import {
     VCardTitle,
 } from 'vuetify/components';
 
-import { NewDefaultSRSItem, SRSItemFromJson } from './SRSItem.ts';
-import type { SRSItem } from './SRSItem.ts';
 
 enum Direction {
     Left = 'left',
@@ -30,7 +31,6 @@ export default defineComponent({
         return {
             showBack: false,
             myData: '',
-            srsItem: <SRSItem | undefined> NewDefaultSRSItem(),
         }
     },
     watch: {
@@ -41,67 +41,74 @@ export default defineComponent({
             }
         },
         cardId(newVal, oldVal) {
-            console.log(`** found new card-id: ${oldVal} => ${newVal} **`);
-            if (oldVal && localStorage.getItem(oldVal)) {
-                localStorage.setItem(oldVal, JSON.stringify(this.srsItem));
-            }
-            if (newVal && localStorage.getItem(newVal)) {
-                this.srsItem = SRSItemFromJson(localStorage.getItem(newVal)!);
-            }
+            // console.log(`** found new card-id: ${oldVal} => ${newVal} **`);
+            // if (oldVal && localStorage.getItem(oldVal)) {
+            //     localStorage.setItem(oldVal, JSON.stringify(this.srsItem));
+            // }
+            // if (newVal && localStorage.getItem(newVal)) {
+            //     this.srsItem = SRSItemFromJson(localStorage.getItem(newVal)!);
+            // }
         },
         srsItem: {
             handler: function(newVal, oldVal) {
-                console.log(`srsItem: ${JSON.stringify(oldVal)} => ${JSON.stringify(newVal)}`);
-                if (!oldVal || newVal.last != oldVal.last) {
-                    console.log('srsItem: updating localstorage')
-                    localStorage.setItem('srs', JSON.stringify(newVal));
-                }
+                // console.log(`srsItem: ${JSON.stringify(oldVal)} => ${JSON.stringify(newVal)}`);
+                // if (!oldVal || newVal.last != oldVal.last) {
+                //     console.log('srsItem: updating localstorage')
+                //     localStorage.setItem('srs', JSON.stringify(newVal));
+                // }
             },
             deep: true,
         },
     },
     mounted() {
-        console.log('** mounted **')
-        if (!!localStorage.getItem('myData')) {
-            console.log('** found myData **');
-            this.myData = localStorage.getItem('myData')!;
-        }
-        if (this.cardId && localStorage.getItem(this.cardId)) {
-            console.log('** found card-id **');
-            this.srsItem = SRSItemFromJson(localStorage.getItem(this.cardId)!);
-        } else if (!!localStorage.getItem('srs')) {
-            console.log('** found srs **');
-            this.srsItem = SRSItemFromJson(localStorage.getItem('srs')!);
-        }
+        console.log('** FlashcardViewOnly.mounted **')
         window.addEventListener('keyup', (ev) => {
             switch(ev.key) {
                 case 'ArrowDown':
-                    this.showBack = !this.showBack;
-                    break;
-                case 'ArrowLeft':
-                    if (this.showBack) { this.yes(); }
+                    this.flip();
                     break;
                 case 'ArrowRight':
-                    if (this.showBack) { this.no(); }
+                    this.yes();
+                    break;
+                case 'ArrowLeft':
+                    this.no();
                     break;
             }
         });
     },
     methods: {
-        swipe: (dir: Direction) => { console.log(dir + ' swipe') },
-        yes: function() {
-            this.myData = 'yes';
-            if (!!this.srsItem) {
-                this.srsItem.correct();
+        flip: function () {
+            this.showBack = !this.showBack;
+        },
+        swipe: function (dir: Direction) {
+            console.log(dir + ' swipe');
+            switch (dir) {
+                case Direction.Right:
+                    this.yes();
+                    break;
+                case Direction.Left:
+                    this.no();
+                    break;
+                case Direction.Bottom:
+                    this.flip();
+                    break;
+                default:
+                    break;
             }
-            this.next();
+        },
+        yes: function() {
+            if (this.showBack) {
+                this.myData = 'yes';
+                this.showBack = false;
+                this.next();
+            }
         },
         no: function() {
-            this.myData = 'no';
-            if (!!this.srsItem) {
-                this.srsItem.incorrect();
+            if (this.showBack) {
+                this.myData = 'no';
+                this.showBack = false;
+                this.repeat();
             }
-            this.repeat();
         }
     },
 });
@@ -114,22 +121,19 @@ export default defineComponent({
                     style="min-height: 300px; margin: auto;"
                     justify="center"
                     vertical-align="middle"
-                    @click="showBack = !showBack"
-                    @keyup.down="showBack = !showBack"
-                    v-touch:swipe.left="() => { console.log('Left swipe') }"
+                    @click="flip"
+                    @keyup.down="flip"
                     v-touch:swipe="swipe">
                 <v-card-item style="height: 200px" vertical-align="middle" text-align="middle">
                     <v-card-title vertical-align="middle" class="text-xs-h1 text-smAndUp-h1">
                         <ruby>
-                        {{ srsItem?.front }} <rt v-if="showBack">furigana</rt>
+                        {{ front }} <rt v-if="showBack && furigana">{{ furigana }}</rt>
                         </ruby>
                     </v-card-title>
-                    <v-card-subtitle>{{ cardId }} / {{ myData }}</v-card-subtitle>
+                    <!-- <v-card-subtitle>{{ myData }}</v-card-subtitle> -->
                 </v-card-item>
                 <v-card-text v-if="showBack" class="text-h3 pa-2" style="font-family: 'Open Sans'">
-                    {{ srsItem?.back }} <br />
-                    Level: {{srsItem?.level }} <br />
-                    {{ srsItem?.last.toLocaleDateString() }}
+                    {{ back }}
                 </v-card-text>
             </v-container>
         </v-card>
@@ -137,13 +141,13 @@ export default defineComponent({
             <v-container style="padding: 0">
                 <v-row class="d-flex justify-space-between">
                     <v-col cols="auto">
-                        <v-btn variant="tonal" @click="yes">
-                            Yes
+                        <v-btn variant="tonal" @click="no">
+                            No
                         </v-btn>
                     </v-col>
                     <v-col cols="auto">
-                        <v-btn variant="tonal" @click="no">
-                            No
+                        <v-btn variant="tonal" @click="yes">
+                            Yes
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -179,5 +183,9 @@ export default defineComponent({
 
 .v-col {
     display: flex;
+}
+
+.v-btn {
+    width: 200px;
 }
 </style>

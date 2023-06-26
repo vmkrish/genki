@@ -9,5 +9,7 @@
       "@/*": ["./genki/src/*"],
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
   }
 }

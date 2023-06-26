@@ -49,6 +49,9 @@ app.use(createRouter({
         { path: '/vocab-vdtable', component: () => import('./components/VocabTable/VocabVDTable.vue') },
         { path: '/vocab-btable', component: () => import('./components/VocabTable/BulmaTable.vue') },
         { path: '/flashcards', component: () => import('./components/Flashcards/Viewer.vue') },
+        { path: '/flashcard-queue', component: () => import('./components/Flashcards/FlashcardReview.vue') },
+        { path: '/genki-review', component: () => import('./components/Flashcards/GenkiReview.vue') },
+        { path: '/localstorage', component: () => import('./components/Flashcards/LocalStorage.vue') },
         { path: '/new', component: () => import('./components/NewView.vue') }
     ],
 }))

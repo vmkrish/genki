@@ -30,6 +30,9 @@ import { mdiHelpBoxMultipleOutline } from '@mdi/js';
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
+          <v-list-item-title><router-link to="/flashcard-queue">FC</router-link></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
           <v-list-item-title><router-link to="/vocab">Vocab</router-link></v-list-item-title>
         </v-list-item>
         <v-list-item>
@@ -43,6 +46,9 @@ import { mdiHelpBoxMultipleOutline } from '@mdi/js';
         </v-list-item>
         <v-list-item>
           <v-list-item-title><router-link to="/new">New</router-link></v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title><router-link to="/localstorage">LS</router-link></v-list-item-title>
         </v-list-item>
         <v-list-item>
           <v-list-item-title>
