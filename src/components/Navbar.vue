@@ -26,7 +26,7 @@ import { mdiHelpBoxMultipleOutline } from '@mdi/js';
         </v-list-item>
         <v-list-item>
           <v-list-item-title>
-            <router-link to="/flashcards"><v-icon :icon="mdiHelpBoxMultipleOutline" /></router-link>
+            <router-link to="/genki-review"><v-icon :icon="mdiHelpBoxMultipleOutline" /></router-link>
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
