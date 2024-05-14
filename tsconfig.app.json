@@ -6,7 +6,7 @@
     "composite": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./genki/src/*"],
+      "@/genki/*": ["./genki/src/*"],
     },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
